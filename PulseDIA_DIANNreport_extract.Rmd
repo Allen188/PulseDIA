@@ -1,0 +1,30 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r}
+df <- read.delim("report.tsv")
+bb <- which(df$Precursor.Quantity==0)
+df <- df[-bb,]
+df1 <- data.frame(sample=df$File.Name,pep=df$Stripped.Sequence,prot=df$Protein.Ids,intesity=df$Precursor.Quantity)
+
+library(reshape2)
+df2 <- dcast(df1,pep+prot~sample,value.var = 'intesity',mean)
+sum_dia <- apply(df2,2,function(x) sum(!is.na(x)))
+write.table(df2,file="diann_helaecoli_part2_pep20191221.txt",sep="\t",col.names = T,row.names = F,quote = F)
+
+
+
+
+
+
+#df <- df[-which(df$Protein.Ids==""),]
+df1 <- data.frame(sample=df$File.Name,prot=df$Protein.Ids,intesity=df$PG.Quantity)
+df1 <- unique(df1)
+library(reshape2)
+df2 <- dcast(df1,prot~sample,value.var = 'intesity',mean)
+sum_dia <- apply(df2,2,function(x) sum(!is.na(x)))
+write.table(df2,file="diann_helaecoli_part2_prot20191221.txt",sep="\t",col.names = T,row.names = F,quote = F)
+```
+
