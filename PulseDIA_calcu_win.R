@@ -16,12 +16,12 @@ wins_type <- "Fixed"                  #Fixed or Variable
 pulse_num  <-   4
 out_name <- "BRP_4_part"
 out_filename_MS <- "4/MS" 
-out_filename_tmp <- "4/Cirt"
+out_filename_Cirt <- "4/Cirt"
 overlap <-   FALSE                       # TRUE or FALSE
 
 mz_start   <-   400
 mz_end     <-   1200 
-win_num    <-   100
+win_num    <-   24
 input_name <- "BRP_QE_peptides.txt"
 
 
