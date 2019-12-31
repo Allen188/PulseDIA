@@ -1,11 +1,11 @@
 # PulseDIA
-A novel gas phase separation and MS acquisition method which improves the specificity and sensitivity of Orbitrap-based DIA analysis.
+A novel gas phase separation based MS acquisition method could improve the specificity and sensitivity of Orbitrap-based DIA analysis.
 <br>
 ## Instruction
 ### PulseDIA_calcu_win.R
-It can be generated customized PulseDIA isolation window scheme.
+This script can generate a customized PulseDIA isolation window scheme.
 
-#### Parameters that need to be modified
+#### Please set the required parameters according to experiments
 ```
 #----------------------------- Please modify the parameters ---------------------------------------------------
 
@@ -24,20 +24,20 @@ input_name <- "BRP_QE_peptides.txt"
 
 #----------------------------------------------------------------------------------------------------------------
 ```
-<br>wins_type: Type of window width design(default: `Fixed` valid: `Fixed`, `Variable`), `Fixed` is a fixed window width design, `Variable`is designed according to the ion density of the different width of the window.
-<br>pulse_num: Number of injections
-<br>out_name: output file name
-<br>out_filename_MS: output folder name, the generated files is used for mass spectrometry
-<br>out_filename_Cirt: output folder name,The generated files is used to build the windows files for CIRT generation for OpenSWATH analysis.
-<br>overlap: Whether the windows are overlap(default: `FALSE` valid: `TRUE`, `FALSE`), `FALSE` means 1 Thomas overlap between two adjacent windows; `TRUE` means half width overlap between two adjacent windows
-#### If you choose wins_type parameter is `Variable`, you need to design the following parameters
+<br>wins_type: type of the designed window width (default: `Fixed` ; valid: `Fixed`, `Variable`), `Fixed` means the experiment with a fixed width window, `Variable` means the experiment with variable width windows that designed according to the ion density.
+<br>pulse_num: number of injections
+<br>out_name: the name of output file
+<br>out_filename_MS: the output folder name. The generated files in this folder will be used for mass spectrometry
+<br>out_filename_Cirt: the output folder name. The generated files in this folder will be used to build the windows file of CiRT for OpenSWATH analysis.
+<br>overlap: Whether the windows have overlap(default: `FALSE` ;valid: `TRUE`, `FALSE`), `FALSE` means 1 Thomas overlap between two adjacent windows; `TRUE` means half width overlap between two adjacent windows
+#### If you choose wins_type parameter to be `Variable`, you need to set the following parameters
 <br>mz_start: The start m/z of MS1 acqusition range
 <br>mz_end: The end m/z of MS1 acqusition range
 <br>win_num: The number of isolation windows, default is 24 Windows
 <br>input_name: precursor ion intensity file for special samples, window width designed according to the precursor ion density from this file
 
 ### PulseDIA_DIANNreport_extract.Rmd
-It is used to extract peptide quantification results or protein quantification results from DIA-NN results
+This script is used to extract peptide or protein quantification results from DIA-NN output
 ```
 df <- read.delim("report.tsv")
 bb <- which(df$Precursor.Quantity==0)
@@ -63,8 +63,8 @@ write.table(df2,file="diann_CCA_pd2_prot20191206.txt",sep="\t",col.names = T,row
 The code above is used to extract protein quantitative results and export them
 
 ### Pulsedia_DIANNresult_combine.R
-The code is to combine peptides or proteins quantitative results from multiple PulseDIA injections for the same sample.
-#### Parameters that need to be modified
+The script could to combine peptides or proteins quantitative results from multiple PulseDIA injections for the same sample.
+#### Please set the required parameters
 ```
 nm <- as.character(sapply(colnames(df)[-(1:2)],function(v) {str_split(v,"\\.")[[1]][6]}))
 nm <- as.character(sapply(nm,function(v){str_split(v,"_part")[[1]][1]}))
