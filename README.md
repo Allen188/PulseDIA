@@ -62,7 +62,7 @@ write.table(df2,file="diann_CCA_pd2_prot20191206.txt",sep="\t",col.names = T,row
 ```
 The code above is used to extract protein quantitative results and export them
 
-### Pulsedia_DIANNresult_combine.R
+### Pulsedia_DIANNresult_combine.R 
 The script could to combine peptides or proteins quantitative results from multiple PulseDIA injections for the same sample.
 #### Please set the required parameters
 ```
