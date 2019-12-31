@@ -31,8 +31,8 @@ input_name <- "BRP_QE_peptides.txt"
 <br>out_filename_Cirt: the output folder name. The generated files in this folder will be used to build the windows file of CiRT for OpenSWATH analysis.
 <br>overlap: Whether the windows have overlap(default: `FALSE` ;valid: `TRUE`, `FALSE`), `FALSE` means 1 Thomas overlap between two adjacent windows; `TRUE` means half width overlap between two adjacent windows
 #### If you choose wins_type parameter to be `Variable`, you need to set the following parameters
-<br>mz_start: The start m/z of MS1 acqusition range
-<br>mz_end: The end m/z of MS1 acqusition range
+<br>mz_start: The start m/z of MS1 acquisition range
+<br>mz_end: The end m/z of MS1 acquisition range
 <br>win_num: The number of isolation windows, default is 24 Windows
 <br>input_name: precursor ion intensity file for special samples, window width designed according to the precursor ion density from this file
 
