@@ -66,7 +66,9 @@ The code above is used to extract protein quantitative results and export them
 The script could to combine peptides or proteins quantitative results from multiple PulseDIA injections for the same sample.
 #### Please set the required parameters
 ```
+overlap_calcu <- "mean"       ## "mean"  or  "max"
 nm <- as.character(sapply(colnames(df)[-(1:2)],function(v) {str_split(v,"\\.")[[1]][6]}))
 nm <- as.character(sapply(nm,function(v){str_split(v,"_part")[[1]][1]}))
 ```
 The code above is to keep the filenames of different parts consistent. This is the only part for users to change according the actual filenames.
+<br>overlap_calcu: the combined method for calculating the values of overlapping Windows (default: `mean`; valid: `mean`, `max`), `mean` means that the values are combined by averaging, `max` represents a combination of values by maximizing them.
