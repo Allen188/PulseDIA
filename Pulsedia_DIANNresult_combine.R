@@ -26,6 +26,7 @@ if(length(file)>2){
   }
 }
 
+overlap_calcu <- "mean"       ## "mean"  or  "max"
 out_name <- "diann_cca_pep20191206_combine.txt"
 
 #---------------------------------------------------------------------------------------------------------------
@@ -48,12 +49,21 @@ df0$label <- sapply(df0$label,function(v){strsplit(v,"\\.")[[1]][1]})
 
 result <- c()
 k0 <- unique(df0$label)
-for(lbl in k0){
-  k1 <- df0[df0$label==lbl,]
-  k2 <- apply(k1[,-1],2,function(v){mean(v,na.rm = T)})
-  result <- rbind(result,k2)
+if(overlap_calcu=="mean"){
+  for(lbl in k0){
+    k1 <- df0[df0$label==lbl,]
+    k2 <- apply(k1[,-1],2,function(v){mean(v,na.rm = T)})
+    result <- rbind(result,k2)
+  }
 }
 
+if(overlap_calcu=="max"){
+  for(lbl in k0){
+    k1 <- df0[df0$label==lbl,]
+    k2 <- apply(k1[,-1],2,function(v){ifelse(sum(!is.na(v))>0,max(v,na.rm = T),NA) })
+    result <- rbind(result,k2)
+  }
+}
 
 rownames(result) <- k0
 
@@ -98,6 +108,7 @@ if(length(file)>2){
   }
 }
 
+overlap_calcu <- "mean"       ## "mean"  or  "max"
 out_name <- "diann_cca_prot20191206_combine.txt"
 
 #---------------------------------------------------------------------------------------------------------------
@@ -120,12 +131,21 @@ df0$label <- sapply(df0$label,function(v){strsplit(v,"\\.")[[1]][1]})
 
 result <- c()
 k0 <- unique(df0$label)
-for(lbl in k0){
-  k1 <- df0[df0$label==lbl,]
-  k2 <- apply(k1[,-1],2,function(v){mean(v,na.rm = T)})
-  result <- rbind(result,k2)
+if(overlap_calcu=="mean"){
+  for(lbl in k0){
+    k1 <- df0[df0$label==lbl,]
+    k2 <- apply(k1[,-1],2,function(v){mean(v,na.rm = T)})
+    result <- rbind(result,k2)
+  }
 }
 
+if(overlap_calcu=="max"){
+  for(lbl in k0){
+    k1 <- df0[df0$label==lbl,]
+    k2 <- apply(k1[,-1],2,function(v){ifelse(sum(!is.na(v))>0,max(v,na.rm = T),NA) })
+    result <- rbind(result,k2)
+  }
+}
 
 rownames(result) <- k0
 
